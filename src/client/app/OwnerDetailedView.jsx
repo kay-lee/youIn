@@ -7,16 +7,12 @@ class OwnerDetailedView extends React.Component {
     this.state = {
       confirm: false
     }
-    //bind methods here
     this.deleteEvent = this.deleteEvent.bind(this);
     this.updateEventStatus = this.updateEventStatus.bind(this);
   }
-  //insert methods here
 
 
   updateEventStatus(url) {
-    // AJAX request to delete event from users list in the database
-    // console.log('yo', this.props.accessToken);
     $.ajax({
       url: url,
       method: 'POST',
@@ -48,11 +44,11 @@ class OwnerDetailedView extends React.Component {
     return (
       <div className="row list-item">
         <div className="col-md-8 col-md-offset-1">
-          <p>{this.props.event.description}</p>
-          <p>We're meeting at: {this.props.event.location}</p>
+          <p className="event_details">{this.props.event.description}</p>
+          <p className="event_details">We are meeting at: {this.props.event.location}</p>
         </div>
         <div className="col-md-3">
-          <ul>
+          <ul className="event_details">
             {attendees.map((attendee, i) => <li key={i}>{attendee.firstname}</li>)}
           </ul>
         </div>

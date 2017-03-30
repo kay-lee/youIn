@@ -4,7 +4,6 @@ import FriendsListItem from './FriendsListItem.jsx';
 import Modal from 'boron/DropModal';
 import $ from 'jquery';
 
-//trying to force a webpack build
 class CreateEventButton extends React.Component {
   constructor(props) {
     super(props);
@@ -20,17 +19,14 @@ class CreateEventButton extends React.Component {
       invitees: {},
       description: ''
     }
-
     this.handleSubmit = this.handleSubmit.bind(this);
     this.inviteFriend = this.inviteFriend.bind(this);
     this.addToUsers_Events = this.addToUsers_Events.bind(this);
-
   }
 
   componentDidMount() {
     this.setState({friends: this.props.friends})
   }
-
 
   showModal () {
     this.refs.modal.show();
@@ -66,7 +62,6 @@ class CreateEventButton extends React.Component {
       }
     } else {
       return () => {
-
         this.setState((prevState, props) => {
           let clicked = prevState.clicked;
           let invitees = prevState.invitees;
@@ -80,10 +75,6 @@ class CreateEventButton extends React.Component {
   }
 
   addToUsers_Events(eventId) {
-    //post request on new route, events/users
-    //include user ids from attendees
-    //include data from the event that was created
-
     let users = this.state.invitees;
     let userIds = [];
     for(let i in users) {
@@ -93,7 +84,6 @@ class CreateEventButton extends React.Component {
       userIds: userIds,
       eventId: eventId,
     }
-
     $.ajax({
       url: '/events/users',
       method: 'POST',
@@ -115,7 +105,6 @@ class CreateEventButton extends React.Component {
       }.bind(this)
     });
   }
-
 
   handleSubmit (event) {
     let context = this;
@@ -143,11 +132,8 @@ class CreateEventButton extends React.Component {
       console.log('error in ajax request in CreateEventButton', err);
       this.props.history.push('/');
     }
-  })
-
+    });
   }
-
-
 
   render () {
     return (
@@ -158,13 +144,12 @@ class CreateEventButton extends React.Component {
             <form onSubmit={this.handleSubmit.bind(this)}>
               <div className="row">
                 <div className="col-md-8">
-                  <h4 className='create'>Give your event a title</h4>
+                  <h4 className='create'>Give your event a name</h4>
                   <input 
                     value={this.state.title} 
                     type="text"
                     onChange={this.handleChange.bind(this, 'title')} required
                     />
-
                   <h4 className='create'>Pick an event category</h4>
                   <select value={this.state.what} onChange={this.handleChange.bind(this, 'what')} required>
                     <option value="food-drinks" >Food/Drinks</option>
@@ -197,7 +182,6 @@ class CreateEventButton extends React.Component {
                     type="number" required
                     />
                 </div>
-
                 <div className="col-md-4">
                   <h4 className='create'>Invite Friends</h4>
                   {
@@ -211,27 +195,19 @@ class CreateEventButton extends React.Component {
                     )
                   }
                 </div>
-
               </div>
-
-
               <div className="col-md-12">
                 <h4 className='create'>Description: </h4>
               </div>
-
-
               <div className="col-md-12">
                 <input
                 value={this.state.description}
                 onChange={this.handleChange.bind(this, 'description')}
                 type="text" required/>
               </div>
-
-
               <div className="col-md-12">
                 <button type="submit">See Who's In!</button>
               </div>
-
             </form>
           </div>
         </Modal>
@@ -241,9 +217,3 @@ class CreateEventButton extends React.Component {
 }
 
 export default CreateEventButton;
-
-//click the name and the style changes
-//an array (in state?) that holds all of the people taken from the DB
-//Display those people's names via the friendsListItem component.
-//click the name and add the person to an array of people (with access to all of their information)
-//deselect them and take them out of the array that holds their information.

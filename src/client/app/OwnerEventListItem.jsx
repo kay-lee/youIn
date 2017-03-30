@@ -8,10 +8,9 @@ class OwnerEventListItem extends React.Component {
     this.state = {
       clicked: false
     }
-    //bind methods here
     this.handleClickListItem = this.handleClickListItem.bind(this);
   }
-  //Insert Methods Here
+
   handleClickListItem() {
     this.setState({clicked: !this.state.clicked});
     if (this.state.clicked) {
@@ -33,7 +32,7 @@ class OwnerEventListItem extends React.Component {
         <div className="glyphicon glyphicon-globe col-sm-1"></div>
         <div className="col-sm-4">{this.props.event.title}</div>
         <div className="col-sm-4">{date.format('dddd D') + 'th'} at {this.props.event.time}</div>
-        <div className="col-sm-3">{this.props.event.attendees.length}<span> people IN</span></div>
+        <div className="col-sm-3"><span>Number of attendees: {this.props.event.attendees.length}</span></div>
         <br/>
       </div>
         {this.state.clicked ? <OwnerDetailedView accessToken={this.props.accessToken} event={this.props.event}/> : '' }
