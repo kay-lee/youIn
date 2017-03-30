@@ -32,11 +32,9 @@ class App extends React.Component {
     context.getUsers();
   }
   setToken(token) {
-    // console.log(token, 'this token went through to the top');
     this.setState({
       facebookToken: token
     });
-    // console.log(this.state.facebookToken, 'so does this work?');
   }
   setName(name) {
     this.setState({

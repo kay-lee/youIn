@@ -186,6 +186,18 @@ button */
   border-radius: 12px;
 }
 
+.invite_friends {
+  font-family: sans-serif;
+  font-size: 32px;
+  color: white;
+  background-color: #f47676;
+  padding: 12px 12px 12px 12px;
+  border-radius: 12px;
+  text-align: center;
+  float: right;
+}
+
+
 #my-events-title {
   font-weight: bold;
   font-size: 42px;

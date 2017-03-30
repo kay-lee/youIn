@@ -9,9 +9,8 @@ class Facebook extends React.Component {
   componentDidMount() {
     window.fbAsyncInit = function() {
       FB.init({
-        appId      : window.location.host === 'localhost:8080' ? '1286128124802062' : window.location.host === 'you-in.herokuapp.com' ? '1724251701198619' :'414888392204388',
-        cookie     : true,  // enable cookies to allow the server to access
-                          // the session
+        appId      : window.location.host === 'localhost:8080' ? '1897409527137678' : window.location.host === 'you-in.herokuapp.com' ? '1724251701198619' :'414888392204388',
+        cookie     : true,
         xfbml      : true,
         version    : 'v2.1'
       });
@@ -45,7 +44,6 @@ class Facebook extends React.Component {
           xhr.setRequestHeader('Authorization', 'Bearer ' + response.authResponse.accessToken);
         }
       })
-      // console.log(response.authResponse.accessToken, 'this is the access token');
       this.props.setToken(response.authResponse.accessToken);
       this.props.getEvents(this.props.history, function(result) {
         console.log('results of fetching events', result);

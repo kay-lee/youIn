@@ -3,6 +3,7 @@ import OwnerEventList from './OwnerEventList.jsx';
 import FriendEventList from './FriendEventList.jsx';
 import CreateEventButton from './CreateEventButton.jsx';
 import LogoutButton from './LogoutButton.jsx';
+import Invite from './Invite.jsx';
 
 class Homepage extends React.Component {
   constructor(props) {
@@ -42,7 +43,6 @@ class Homepage extends React.Component {
   }
 
   render() {
-
     return (
       <div>
         <div className="container">
@@ -50,6 +50,7 @@ class Homepage extends React.Component {
            <h2 id='userName'>Welcome <span id="headerName">{this.props.userName}</span></h2>
             <LogoutButton />
           </div>
+          <Invite />
           <CreateEventButton
           history={this.props.history}
           friends={this.props.friends}
