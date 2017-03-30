@@ -66,9 +66,9 @@ h2, h4 {
 }
 
 p, li {
-  color: white;
+  color: black;
   font-family: Roboto, sans-serif;
-  text-shadow: 1px 0 0 #000, 0 -1px 0 #000, 0 1px 0 #000, -1px 0 0 #000;
+  /*text-shadow: 1px 0 0 #000, 0 -1px 0 #000, 0 1px 0 #000, -1px 0 0 #000;*/
 }
 
 .create {
@@ -184,6 +184,18 @@ button */
   background-color: #800000;
   padding: 12px 12px 12px 12px;
   border-radius: 12px;
+  cursor: pointer;
+  outline: none;
+  border: none;
+  box-shadow: 0 2px #b2b2b2;
+}
+
+#create_event:hover {background-color: #b80101}
+
+#create_event:active {
+  background-color: #800000;
+  box-shadow: 0 2px #b2b2b2;
+  transform: translateY(3px);
 }
 
 .invite_friends {
@@ -195,8 +207,26 @@ button */
   border-radius: 12px;
   text-align: center;
   float: right;
+  cursor: pointer;
+  outline: none;
+  border: none;
+  box-shadow: 0 2px #b2b2b2;
 }
 
+.invite_friends:hover {background-color: #f69191}
+
+.invite_friends:active {
+  background-color: #f47676;
+  box-shadow: 0 2px #b2b2b2;
+  transform: translateY(3px);
+}
+
+.inviteFriendsMessage {
+  font-family: Roboto, sans-serif;
+  color: black;
+  text-shadow: none;
+  text-align: center;
+}
 
 #my-events-title {
   font-weight: bold;

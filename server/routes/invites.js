@@ -15,7 +15,7 @@ module.exports = function(req, res) {
 		})
 	})
 	.catch((error) => {
-		res.status(400).json({
+		res.status(500).json({
 			user_id: req.body.user_id, 
 			name: req.body.name, 
 			email: req.body.email,

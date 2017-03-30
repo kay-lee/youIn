@@ -8,7 +8,7 @@ module.exports = function(req, res) {
     res.status(200).json(invites);
   })
   .catch( (err) => {
-    res.status(400).send(err, 'Error in get_invites handler function');
+    res.status(500).send(err, 'Error in get_invites handler function');
   });
 
 };

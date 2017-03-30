@@ -80,13 +80,20 @@ class Invite extends React.Component {
 				<Modal ref="modal">
 					<div className="inviteFriendsContainer">
 						<form>
-							<h3>Invite Your Friends</h3>
+							<h3 className="inviteFriendsMessage">Invite Your Friends</h3>
+							<br></br>
 							<InviteeList invitees={this.state.invitees} />
+							<br></br>
+							<br></br>
+							<h5>Want to invite others?</h5>
+							<br></br>
 							Name:
 							<input id="nameInput" onChange={this.handleChange.bind(this, 'name')} type="text" />
 							<span></span>
 							Email Address:
 							<input id="emailInput" onChange={this.handleChange.bind(this, 'email')} type="email" />
+							<br></br>
+							<br></br>
 							<br></br>
 							<button onClick={this.handleSubmit} type="submit">Send Invites</button>
 							<button onClick={this.exitInvite}>Done</button>
