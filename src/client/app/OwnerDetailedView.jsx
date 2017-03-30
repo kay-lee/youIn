@@ -8,15 +8,12 @@ class OwnerDetailedView extends React.Component {
     this.state = {
       confirm: false
     }
-    //bind methods here
     this.deleteEvent = this.deleteEvent.bind(this);
     this.updateEventStatus = this.updateEventStatus.bind(this);
   }
-  //insert methods here
 
 
   updateEventStatus(url) {
-    // AJAX request to delete event from users list in the database
     $.ajax({
       url: url,
       method: 'POST',
@@ -51,7 +48,7 @@ class OwnerDetailedView extends React.Component {
       <div id="event-details" className="event-details row list-item">
         <div className="col-md-8 col-md-offset-1">
           <p>{this.props.event.description}</p>
-          <p>We're meeting at: {this.props.event.location}</p>
+          <p>{this.props.event.location}</p>
           <div className="attendees">
             <h4> Attendees: </h4>
             <ul>
