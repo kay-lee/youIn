@@ -1,6 +1,7 @@
 import React from 'react';
 import $ from 'jquery';
 import ChatRoom from './ChatRoom.jsx'
+import { withGoogleMap } from "react-google-maps";
 
 class OwnerDetailedView extends React.Component {
   constructor(props) {
@@ -10,8 +11,12 @@ class OwnerDetailedView extends React.Component {
     }
     this.deleteEvent = this.deleteEvent.bind(this);
     this.updateEventStatus = this.updateEventStatus.bind(this);
+    this.initMap = this.initMap.bind(this);
   }
 
+  componentDidMount() {
+    this.initMap();
+  }
 
   updateEventStatus(url) {
     $.ajax({
@@ -38,7 +43,18 @@ class OwnerDetailedView extends React.Component {
   deleteEvent () {
     console.log('event DELETED!');
     this.updateEventStatus('/delete/owner');
+  }
 
+  initMap() {
+    var doloresPark = {lat: 37.759617, lng: -122.426904};
+    var map = new google.maps.Map(document.getElementById('map'), {
+      zoom: 15,
+      center: doloresPark,
+    });
+    var marker = new google.maps.Marker({
+      position: doloresPark,
+      map: map
+    });
   }
 
   render() {
@@ -55,6 +71,7 @@ class OwnerDetailedView extends React.Component {
               {attendees.map((attendee, i) => <li key={i}>{attendee.firstname}</li>)}
             </ul>
           </div>        
+          <div id="map"></div>
         </div>
         <div className="col-md-12 ">
           <ChatRoom eventId = {this.props.eventId} />
@@ -66,6 +83,3 @@ class OwnerDetailedView extends React.Component {
 }
 
 export default OwnerDetailedView;
-
-
-// {this.state.confirm === false ? "Delete this Event" : "Are you sure?"}

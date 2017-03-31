@@ -385,7 +385,6 @@ button */
 
 #owner-delete-button:active {
   background-color: #bc3231;
-  /*box-shadow: 0 2px #b2b2b2;*/
   transform: translateY(3px);
 }
 
