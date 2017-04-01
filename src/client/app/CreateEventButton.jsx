@@ -10,16 +10,16 @@ class CreateEventButton extends React.Component {
     this.state = {
       clicked: {},
       friends:[],
-      title: '',
+      title: null,
       what: 'food-drinks',
-      where: '',
-      longitude: 37.759617, // will replace longitude and latitude when server returns data 
-      latitude: -122.426904, 
-      date: '',
-      time: '',
-      min: '',
+      where: null,
+      longitude: null, 
+      latitude: null, 
+      date: null,
+      time: null,
+      min: null,
       invitees: {},
-      description: ''
+      description: null
     }
     this.handleSubmit = this.handleSubmit.bind(this);
     this.inviteFriend = this.inviteFriend.bind(this);

@@ -56,9 +56,12 @@ module.exports = (db) => {
       user_id BIGINT not null,\
       firstname varChar(50),\
       event_id INT not null,\
-      message varChar(400));')  
+      message varChar(400));')
+  })
+  .then(() => {
+    return db.query('ALTER TABLE events ALTER column longitude type float;')
+  })
+  .then(() => {
+    return db.query('ALTER TABLE events ALTER column latitude type float;')
   })
 };
-
-
-      // photoUrl varChar(150),\

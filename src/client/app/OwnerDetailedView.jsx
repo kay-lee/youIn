@@ -46,14 +46,22 @@ class OwnerDetailedView extends React.Component {
   }
 
   initMap() {
-    var doloresPark = {lat: 37.759617, lng: -122.426904};
-    // console.log(`${this.props.event.event_id}-map`);
+    console.log(this.props.event);
+    // var doloresPark = {lat: 37.759617, lng: -122.426904};
     var map = new google.maps.Map(document.getElementById(`${this.props.event.event_id}-map`), {
       zoom: 15,
-      center: doloresPark,
+      center: {
+        lat: this.props.event.latitude,
+        lng: this.props.event.longitude
+      },
     });
+    console.log('latitude', this.props.event.latitude);
+    console.log('longitude', this.props.event.longitude);
     var marker = new google.maps.Marker({
-      position: doloresPark,
+      position: {
+        lat: this.props.event.latitude,
+        lng: this.props.event.longitude
+      },
       map: map
     });
   }
