@@ -9,6 +9,7 @@ class OwnerEventListItem extends React.Component {
       clicked: false
     }
     this.handleClickListItem = this.handleClickListItem.bind(this);
+    // this.initMap = this.initMap.bind(this); // adding to map out for each element
   }
 
   handleClickListItem() {
@@ -22,6 +23,19 @@ class OwnerEventListItem extends React.Component {
       });
     }
   }
+
+  // adding to map out for each element
+  // initMap() {
+  //   var doloresPark = {lat: 37.759617, lng: -122.426904};
+  //   var map = new google.maps.Map(document.getElementById('map'), {
+  //     zoom: 15,
+  //     center: doloresPark,
+  //   });
+  //   var marker = new google.maps.Marker({
+  //     position: doloresPark,
+  //     map: map
+  //   });
+  // }
 
   render() {
     let date = moment(this.props.event.date);

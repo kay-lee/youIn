@@ -13,6 +13,8 @@ class CreateEventButton extends React.Component {
       title: '',
       what: 'food-drinks',
       where: '',
+      longitude: 37.759617, // will replace longitude and latitude when server returns data 
+      latitude: -122.426904, 
       date: '',
       time: '',
       min: '',
@@ -159,6 +161,7 @@ class CreateEventButton extends React.Component {
                     <option value="other">Other</option>
                   </select>
                   <h4 className='create'>Where?</h4>
+                  <h4>this part should be linked with Google Places AutoComplete</h4>
                   <input 
                     value={this.state.where}
                     onChange={this.handleChange.bind(this, 'where')}

@@ -15,6 +15,8 @@ module.exports = (db) => {
       short_desc varChar(50),\
       description varChar(255),\
       location varChar(255),\
+      longitude BIGINT,\
+      latitude BIGINT,\
       date DATE,\
       time TIME,\
       min INT);')

@@ -47,7 +47,8 @@ class OwnerDetailedView extends React.Component {
 
   initMap() {
     var doloresPark = {lat: 37.759617, lng: -122.426904};
-    var map = new google.maps.Map(document.getElementById('map'), {
+    // console.log(`${this.props.event.event_id}-map`);
+    var map = new google.maps.Map(document.getElementById(`${this.props.event.event_id}-map`), {
       zoom: 15,
       center: doloresPark,
     });
@@ -71,7 +72,7 @@ class OwnerDetailedView extends React.Component {
               {attendees.map((attendee, i) => <li key={i}>{attendee.firstname}</li>)}
             </ul>
           </div>        
-          <div id="map"></div>
+          <div className="google-map" id={`${this.props.event.event_id}-map`}></div>
         </div>
         <div className="col-md-12 ">
           <ChatRoom eventId = {this.props.eventId} />
