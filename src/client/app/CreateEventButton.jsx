@@ -3,6 +3,7 @@ import {render} from 'react-dom';
 import FriendsListItem from './FriendsListItem.jsx';
 import Modal from 'boron/DropModal';
 import $ from 'jquery';
+import Geosuggest from 'react-geosuggest';
 
 class CreateEventButton extends React.Component {
   constructor(props) {
@@ -10,16 +11,16 @@ class CreateEventButton extends React.Component {
     this.state = {
       clicked: {},
       friends:[],
-      title: null,
+      title: '',
       what: 'food-drinks',
-      where: null,
-      longitude: null, 
-      latitude: null, 
-      date: null,
-      time: null,
-      min: null,
+      where: '',
+      longitude: '', 
+      latitude: '', 
+      date: '',
+      time: '',
+      min: '',
       invitees: {},
-      description: null
+      description: ''
     }
     this.handleSubmit = this.handleSubmit.bind(this);
     this.inviteFriend = this.inviteFriend.bind(this);
@@ -161,7 +162,14 @@ class CreateEventButton extends React.Component {
                     <option value="other">Other</option>
                   </select>
                   <h4 className='create'>Where?</h4>
-                  <h4>this part should be linked with Google Places AutoComplete</h4>
+                  <div>
+                    <Geosuggest 
+                      ref={el=>this._geoSuggest=el} 
+                      initialValue=""
+                      location={new google.maps.LatLng(37.7836924, -122.40896659999999)}
+                      radius="10" />
+                    <button>Select</button>
+                  </div>
                   <input 
                     value={this.state.where}
                     onChange={this.handleChange.bind(this, 'where')}
