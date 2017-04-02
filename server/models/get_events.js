@@ -8,7 +8,6 @@ module.exports = (id) => {
   events.description,\
   events.location,\
   events.date,\
-  events.time,\
   events.min\
   FROM EVENTS INNER JOIN users_events \
   ON users_events.user_id=$1 AND events.event_id = users_events.event_id';

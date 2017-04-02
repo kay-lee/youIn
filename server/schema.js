@@ -15,21 +15,19 @@ module.exports = (db) => {
       short_desc varChar(50),\
       description varChar(255),\
       location varChar(255),\
-      date DATE,\
-      time TIME,\
+      date varchar(500),\
       min INT);')
   })
   .then(() => {
     return db.query('CREATE TABLE IF NOT EXISTS users (\
       user_id BIGINT not null PRIMARY KEY,\
-      token varChar(200),\
+      token varChar(500),\
       firstname varChar(50),\
       lastname varChar(50),\
-      photoUrl varChar(150),\
+      photoUrl varChar(450),\
       email varChar(50));')
   })
   .then(() => {
-
     return db.query('CREATE TABLE IF NOT EXISTS users_events (\
       event_id int not null,\
       user_id BIGINT not null,\
@@ -47,6 +45,12 @@ module.exports = (db) => {
       name varChar(50),\
       email varChar(50),\
       CONSTRAINT unique_email_to_user_id unique (user_id, email));')
+  })
+  .then(() => {
+    return db.query('CREATE TABLE IF NOT EXISTS dates (\
+      id SERIAL not null PRIMARY KEY,\
+      event_id int not null,\
+      date varChar(500));')  
   })
   .then(() => {
     return db.query('CREATE TABLE IF NOT EXISTS chats (\

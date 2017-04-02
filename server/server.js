@@ -41,6 +41,7 @@ app.get('/user', handler.getUser);
 
 app.get('/chatRoom', passport.authenticate('facebook-token'), handler.getChat);
 
+
 app.post('/events/users', passport.authenticate('facebook-token'), handler.addUsersEvents);
 
 app.post('/events/create', passport.authenticate('facebook-token'), handler.createEvent);
@@ -61,9 +62,11 @@ app.post('/chatRoom', passport.authenticate('facebook-token'), handler.insertCha
 app.get('/invites', passport.authenticate('facebook-token'), handler.inviteeList);
 
 app.post('/invites', passport.authenticate('facebook-token'), handler.invites);
+app.post('/invites', passport.authenticate('facebook-token'), handler.invites); 
 
+app.get('/dates', passport.authenticate('facebook-token'), handler.dateVotes);
 
-
+app.post('/dates', passport.authenticate('facebook-token'), handler.dates);
 
 app.get('/test', passport.authenticate('facebook-token'), function(req, res) {
   if (req.user) {

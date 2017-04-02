@@ -3,6 +3,7 @@ import {render} from 'react-dom';
 import FriendsListItem from './FriendsListItem.jsx';
 import Modal from 'boron/DropModal';
 import $ from 'jquery';
+import DayPicker, { DateUtils } from 'react-day-picker';
 
 //trying to force a webpack build
 class CreateEventButton extends React.Component {
@@ -14,16 +15,17 @@ class CreateEventButton extends React.Component {
       title: '',
       what: 'food-drinks',
       where: '',
-      date: '',
       time: '',
       min: '',
       invitees: {},
-      description: ''
+      description: '',
+      selectedDays: []
     }
 
     this.handleSubmit = this.handleSubmit.bind(this);
     this.inviteFriend = this.inviteFriend.bind(this);
     this.addToUsers_Events = this.addToUsers_Events.bind(this);
+    this.handleDayClick = this.handleDayClick.bind(this);
 
   }
 
@@ -126,8 +128,7 @@ class CreateEventButton extends React.Component {
       short_desc: this.state.what,
       description: this.state.description,
       location: this.state.where,
-      date: this.state.date,
-      time: this.state.time,
+      date: this.state.selectedDays,
       min: this.state.min
     }
   $.ajax({
@@ -147,6 +148,20 @@ class CreateEventButton extends React.Component {
 
   }
 
+  handleDayClick(day, { selected }) {
+    const { selectedDays } = this.state;
+    if (selected) {
+      const selectedIndex = selectedDays.findIndex(selectedDay =>
+        DateUtils.isSameDay(selectedDay, day),
+      );
+      selectedDays.splice(selectedIndex, 1);
+    } else {
+      selectedDays.push(day);    
+      // Running into issues here .toString().replace('12:00:00 GMT-0800 (PST)')
+    }
+    this.setState({ selectedDays });
+    console.log(this.state.selectedDays);
+  }
 
 
   render () {
@@ -180,16 +195,10 @@ class CreateEventButton extends React.Component {
                     type="text" required
                     />
                   <h4 className='create'>When?</h4>
-                  <input 
-                    value={this.state.date}
-                    onChange={this.handleChange.bind(this, 'date')}
-                    type="date" required
-                    />
-                  <input
-                    value={this.state.time}
-                    onChange={this.handleChange.bind(this, 'time')}
-                    type="time" required
-                    /> 
+                  <DayPicker
+                    selectedDays={ this.state.selectedDays }
+                    onDayClick={ this.handleDayClick }
+                  />
                   <h4 className='create'>Minimum friends for this event?</h4>
                   <input 
                     value={this.state.min}
