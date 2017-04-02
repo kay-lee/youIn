@@ -15,7 +15,6 @@ module.exports = (db) => {
       short_desc varChar(50),\
       description varChar(255),\
       location varChar(255),\
-
       longitude BIGINT,\
       latitude BIGINT,\
       date varchar(500),\
@@ -54,7 +53,7 @@ module.exports = (db) => {
     return db.query('CREATE TABLE IF NOT EXISTS dates (\
       id SERIAL not null PRIMARY KEY,\
       event_id int not null,\
-      date varChar(500));')  
+      date varChar(500));')
   })
   .then(() => {
     return db.query('CREATE TABLE IF NOT EXISTS chats (\
