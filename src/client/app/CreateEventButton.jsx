@@ -161,21 +161,26 @@ class CreateEventButton extends React.Component {
             <form onSubmit={this.handleSubmit.bind(this)}>
               <div className="row">
                 <div className="col-md-8">
-                  <h4 className='create'>Give your event a name</h4>
-                  <input 
+                  <h4 className='create'>Name your Event:</h4>
+                  <input
+                    className="event_name_input" 
                     value={this.state.title} 
                     type="text"
                     onChange={this.handleChange.bind(this, 'title')} required
                     />
-                  <h4 className='create'>Pick an event category</h4>
-                  <select value={this.state.what} onChange={this.handleChange.bind(this, 'what')} required>
+                    <br />
+                    <br />
+                  <h4 className='create'>Pick an event category:</h4>
+                  <select className="event_category" value={this.state.what} onChange={this.handleChange.bind(this, 'what')} required>
                     <option value="food-drinks" >Food/Drinks</option>
                     <option value="indoor-activity">Indoor Activity</option>
                     <option value="outdoor-activity">Outdoor Activity</option>
                     <option value="hangout">Hangout</option>
                     <option value="other">Other</option>
                   </select>
-                  <h4 className='create'>Where?</h4>
+                  <br />
+                  <br />
+                  <h4 className='create'>Enter location:</h4>
                   <div>
                     <Geosuggest 
                       ref={el=>this._geoSuggest=el} 
@@ -187,8 +192,9 @@ class CreateEventButton extends React.Component {
                   </div>
                   <br />
                   <br />
-                  <h4 className='create'>When?</h4>
+                  <h4 className='create'>Select a date</h4>
                   <input 
+                    className="select_date" 
                     value={this.state.date}
                     onChange={this.handleChange.bind(this, 'date')}
                     type="date" required
@@ -198,8 +204,11 @@ class CreateEventButton extends React.Component {
                     onChange={this.handleChange.bind(this, 'time')}
                     type="time" required
                     /> 
-                  <h4 className='create'>Minimum friends for this event?</h4>
+                  <br />
+                  <br />
+                  <h4 className='create'>Set minimum number of attendees:</h4>
                   <input 
+                    className="minimum_number"
                     value={this.state.min}
                     onChange={this.handleChange.bind(this, 'min')}
                     type="number" required
@@ -220,16 +229,17 @@ class CreateEventButton extends React.Component {
                 </div>
               </div>
               <div className="col-md-12">
-                <h4 className='create'>Description: </h4>
+              <h4 className='description_input'>Description: </h4>
               </div>
               <div className="col-md-12">
                 <input
+                className="description_input_field"
                 value={this.state.description}
                 onChange={this.handleChange.bind(this, 'description')}
                 type="text" required/>
               </div>
               <div className="col-md-12">
-                <button type="submit">See Who's In!</button>
+                <button type="submit" className="submit_button">Submit</button>
               </div>
             </form>
           </div>

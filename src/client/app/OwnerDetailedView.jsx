@@ -47,7 +47,6 @@ class OwnerDetailedView extends React.Component {
 
   initMap() {
     console.log(this.props.event);
-    // var doloresPark = {lat: 37.759617, lng: -122.426904};
     var map = new google.maps.Map(document.getElementById(`${this.props.event.event_id}-map`), {
       zoom: 15,
       center: {
@@ -85,7 +84,8 @@ class OwnerDetailedView extends React.Component {
         <div className="col-md-12 ">
           <ChatRoom eventId = {this.props.eventId} />
         </div>
-        <button onClick={this.deleteEvent} id="owner-delete-button" className="col-md-offset-1">Delete this Event</button>
+        <button id="owner-edit-button">Edit</button>
+        <button onClick={this.deleteEvent} id="owner-delete-button" className="col-md-offset-1">Delete</button>
       </div>
     );
   }
