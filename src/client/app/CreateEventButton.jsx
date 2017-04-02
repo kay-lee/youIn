@@ -215,20 +215,8 @@ class CreateEventButton extends React.Component {
                   />
                   <br />
                   <br />
-                  <h4 className='create'>Set minimum number of attendees:</h4>
-                  <input 
-                    value={this.state.where}
-                    onChange={this.handleChange.bind(this, 'where')}
-                    type="text" required
-                    />
-                  <h4 className='create'>When?</h4>
-                  <DayPicker
-                    selectedDays={ this.state.selectedDays }
-                    onDayClick={ this.handleDayClick }
-                  />
                   <h4 className='create'>Minimum friends for this event?</h4>
                   <input 
-                    className="minimum_number"
                     value={this.state.min}
                     onChange={this.handleChange.bind(this, 'min')}
                     type="number" required

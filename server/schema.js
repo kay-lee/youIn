@@ -18,7 +18,6 @@ module.exports = (db) => {
       longitude BIGINT,\
       latitude BIGINT,\
       date varchar(500),\
-      time TIME,\
       min INT);')
   })
   .then(() => {

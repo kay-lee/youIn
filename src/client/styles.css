@@ -78,10 +78,6 @@ h2, h4 {
   font-family: Roboto, sans-serif;
   /*text-shadow: 1px 0 0 #000, 0 -1px 0 #000, 0 1px 0 #000, -1px 0 0 #000;*/
 }
-
-p, li {
-  color: white;
-}
   
 .event_name_p {
   color: #c5c2c2;
