@@ -25,6 +25,7 @@ class CreateEventButton extends React.Component {
     this.handleSubmit = this.handleSubmit.bind(this);
     this.inviteFriend = this.inviteFriend.bind(this);
     this.addToUsers_Events = this.addToUsers_Events.bind(this);
+    this.onSuggestSelect = this.onSuggestSelect.bind(this);
   }
 
   componentDidMount() {
@@ -118,6 +119,8 @@ class CreateEventButton extends React.Component {
       short_desc: this.state.what,
       description: this.state.description,
       location: this.state.where,
+      longitude: this.state.longitude, 
+      latitude: this.state.latitude, 
       date: this.state.date,
       time: this.state.time,
       min: this.state.min
@@ -136,6 +139,17 @@ class CreateEventButton extends React.Component {
       this.props.history.push('/');
     }
     });
+  }
+
+  onSuggestSelect (suggest) {
+    var location = suggest.label;
+    var latitudeVal = suggest.location.lat;
+    var longitudeVal = suggest.location.lng;
+    this.setState({
+      where: location,
+      latitude: latitudeVal,
+      longitude: longitudeVal
+    })
   }
 
   render () {
@@ -165,16 +179,14 @@ class CreateEventButton extends React.Component {
                   <div>
                     <Geosuggest 
                       ref={el=>this._geoSuggest=el} 
+                      placeholder="Where should we go?"
                       initialValue=""
+                      onSuggestSelect={this.onSuggestSelect}
                       location={new google.maps.LatLng(37.7836924, -122.40896659999999)}
                       radius="10" />
-                    <button>Select</button>
                   </div>
-                  <input 
-                    value={this.state.where}
-                    onChange={this.handleChange.bind(this, 'where')}
-                    type="text" required
-                    />
+                  <br />
+                  <br />
                   <h4 className='create'>When?</h4>
                   <input 
                     value={this.state.date}
