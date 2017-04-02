@@ -4,6 +4,7 @@ import FriendsListItem from './FriendsListItem.jsx';
 import Modal from 'boron/DropModal';
 import $ from 'jquery';
 import Geosuggest from 'react-geosuggest';
+import DayPicker, { DateUtils } from 'react-day-picker';
 
 class CreateEventButton extends React.Component {
   constructor(props) {
@@ -17,15 +18,16 @@ class CreateEventButton extends React.Component {
       longitude: '', 
       latitude: '', 
       date: '',
-      time: '',
       min: '',
       invitees: {},
-      description: ''
+      description: '',
+      selectedDays: []
     }
     this.handleSubmit = this.handleSubmit.bind(this);
     this.inviteFriend = this.inviteFriend.bind(this);
     this.addToUsers_Events = this.addToUsers_Events.bind(this);
     this.onSuggestSelect = this.onSuggestSelect.bind(this);
+    this.handleDayClick = this.handleDayClick.bind(this);
   }
 
   componentDidMount() {
@@ -121,8 +123,7 @@ class CreateEventButton extends React.Component {
       location: this.state.where,
       longitude: this.state.longitude, 
       latitude: this.state.latitude, 
-      date: this.state.date,
-      time: this.state.time,
+      date: this.state.selectedDays,
       min: this.state.min
     }
   $.ajax({
@@ -151,6 +152,22 @@ class CreateEventButton extends React.Component {
       longitude: longitudeVal
     })
   }
+  
+  handleDayClick(day, { selected }) {
+    const { selectedDays } = this.state;
+    if (selected) {
+      const selectedIndex = selectedDays.findIndex(selectedDay =>
+        DateUtils.isSameDay(selectedDay, day),
+      );
+      selectedDays.splice(selectedIndex, 1);
+    } else {
+      selectedDays.push(day);    
+      // Running into issues here .toString().replace('12:00:00 GMT-0800 (PST)')
+    }
+    this.setState({ selectedDays });
+    console.log(this.state.selectedDays);
+  }
+
 
   render () {
     return (
@@ -165,8 +182,7 @@ class CreateEventButton extends React.Component {
                   <input
                     className="event_name_input" 
                     value={this.state.title} 
-                    type="text"
-                    onChange={this.handleChange.bind(this, 'title')} required
+                    type="text"                    onChange={this.handleChange.bind(this, 'title')} required
                     />
                     <br />
                     <br />
@@ -193,20 +209,24 @@ class CreateEventButton extends React.Component {
                   <br />
                   <br />
                   <h4 className='create'>Select a date</h4>
-                  <input 
-                    className="select_date" 
-                    value={this.state.date}
-                    onChange={this.handleChange.bind(this, 'date')}
-                    type="date" required
-                    />
-                  <input
-                    value={this.state.time}
-                    onChange={this.handleChange.bind(this, 'time')}
-                    type="time" required
-                    /> 
+                  <DayPicker
+                    selectedDays={ this.state.selectedDays }
+                    onDayClick={ this.handleDayClick }
+                  />
                   <br />
                   <br />
                   <h4 className='create'>Set minimum number of attendees:</h4>
+                  <input 
+                    value={this.state.where}
+                    onChange={this.handleChange.bind(this, 'where')}
+                    type="text" required
+                    />
+                  <h4 className='create'>When?</h4>
+                  <DayPicker
+                    selectedDays={ this.state.selectedDays }
+                    onDayClick={ this.handleDayClick }
+                  />
+                  <h4 className='create'>Minimum friends for this event?</h4>
                   <input 
                     className="minimum_number"
                     value={this.state.min}
